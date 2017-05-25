@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vue2</title>
+    <script src="vue@2.3.2" charset="utf-8"></script>
+    <script src="vue-resource.min.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <h1>CRUD MEVN</h1>
+    <br><br>
+    <div id="vue-app-one">
+      <div v-if="ninjasId._id.length < 1">
+        <table>
+          <h2>Form Add</h2>
+          <tr>
+            <td>Name</td>
+            <td>:</td>
+            <td><input type="text" ref="name" name="" value=""></td>
+          </tr>
+
+          <tr>
+            <td>Rank</td>
+            <td>:</td>
+            <td><input type="text" ref="rank" name="" value=""></td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td></td>
+            <td><button v-on:click = "addNinjas">Save</button></td>
+          </tr>
+        </table>
+      </div>
+
+      <div v-if="ninjasId._id.length > 0">
+        <table>
+          <h2>Form Update</h2>
+          <tr>
+            <td>Name</td>
+            <td>:</td>
+            <td><input type="text" v-model="ninjasId.name"></td>
+          </tr>
+
+          <tr>
+            <td>Rank</td>
+            <td>:</td>
+            <td><input type="text" v-model="ninjasId.rank"></td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td></td>
+            <td><button v-on:click = "updateNinjas(ninjasId._id)">Update</button></td>
+          </tr>
+        </table>
+      </div>
+
+      <br><br>
+
+      <table border="1" cellspacing="0" height="100" width="600">
+        <tr>
+          <th>No</th>
+          <th>Name</th>
+          <th>Rank</th>
+          <th>Action</th>
+        </tr>
+
+        <tr v-for="(ninjas_, index) in ninjas">
+          <!-- <td>{{index+1}}</td> -->
+          <td>{{ninjas_._id}}</td>
+          <td>{{ninjas_.name}}</td>
+          <td>{{ninjas_.rank}}</td>
+          <td>
+            <a href="#" v-on:click = "getNinjasId(ninjas_._id)">Edit</a>
+            <a href="#" v-on:click = "deleteNinjas(ninjas_._id)">Delete</a>
+          </td>
+        </tr>
+      </table>
+    </div><br><br>
+
+    <script src="app.js" charset="utf-8"></script>
+  </body>
+</html>
